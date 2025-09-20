@@ -6,50 +6,56 @@
   <title>Monster Productions & Events</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-    h1, h2, h3 { margin-bottom: 0.5em; }
-    section { padding: 60px 20px; text-align: center; }
+    body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background: #fff; }
+    h1, h2, h3 { margin-bottom: 0.5em; font-weight: 700; }
+    section { padding: 80px 20px; text-align: center; }
     a { text-decoration: none; color: inherit; }
 
     /* Navbar */
-    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #111; color: #fff; position: sticky; top: 0; z-index: 1000; }
-    .navbar .logo { font-size: 1.5em; font-weight: bold; }
-    .navbar ul { display: flex; list-style: none; gap: 20px; }
-    .navbar a { color: #fff; transition: color 0.3s; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background: #111; color: #fff; position: sticky; top: 0; z-index: 1000; }
+    .navbar img { height: 50px; }
+    .navbar ul { display: flex; list-style: none; gap: 25px; }
+    .navbar a { color: #fff; font-weight: 500; transition: color 0.3s; }
     .navbar a:hover { color: #ff4c29; }
-    .cta-btn { background: #ff4c29; color: #fff; padding: 10px 20px; border-radius: 25px; transition: background 0.3s; }
+    .cta-btn { background: #ff4c29; color: #fff; padding: 12px 25px; border-radius: 25px; transition: background 0.3s; font-weight: bold; }
     .cta-btn:hover { background: #e63e20; }
 
     /* Hero */
-    .hero { background: url('https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture5.png') center/cover no-repeat; color: #fff; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
+    .hero { position: relative; background: url('https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture5.png') center/cover no-repeat; color: #fff; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
+    .hero::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero-content h1 { font-size: 3em; margin-bottom: 20px; }
-    .hero-content p { margin-bottom: 20px; font-size: 1.2em; }
+    .hero-content p { margin-bottom: 30px; font-size: 1.2em; }
 
     /* Services */
-    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-    .service-card { background: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s; }
-    .service-card:hover { transform: translateY(-5px); }
+    .services h2 { margin-bottom: 40px; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+    .service-card { background: #f9f9f9; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform 0.3s; }
+    .service-card:hover { transform: translateY(-8px); }
 
     /* Portfolio */
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 30px; }
-    .portfolio-grid img { width: 100%; border-radius: 10px; }
+    .portfolio h2 { margin-bottom: 40px; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .portfolio-grid img { width: 100%; border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; transition: transform 0.3s; }
+    .portfolio-grid img:hover { transform: scale(1.05); }
 
     /* About */
-    .about p { max-width: 700px; margin: auto; }
-    .about-img { max-width: 300px; width: 100%; height: auto; border-radius: 10px; margin: 20px auto; display: block; }
+    .about p { max-width: 700px; margin: auto; font-size: 1.1em; }
 
     /* Testimonials */
+    .testimonials h2 { margin-bottom: 40px; }
     .testimonial-slider { max-width: 700px; margin: auto; position: relative; }
-    blockquote { display: none; font-style: italic; }
+    blockquote { display: none; font-style: italic; font-size: 1.1em; line-height: 1.5; }
     blockquote.active { display: block; }
 
     /* Contact */
+    .contact h2 { margin-bottom: 30px; }
     form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; }
-    input, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; }
+    input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; }
     button { cursor: pointer; border: none; }
 
     /* Footer */
-    .footer { background: #111; color: #fff; padding: 20px; text-align: center; }
+    .footer { background: #111; color: #fff; padding: 25px; text-align: center; font-size: 0.9em; }
 
     @media (max-width: 768px) {
       .hero-content h1 { font-size: 2em; }
@@ -74,7 +80,7 @@
 <body>
   <!-- Navigation -->
   <header class="navbar">
-    <div class="logo"><img src="https://www.monsterpe.co.za/wp-content/uploads/2016/04/Monster-Logo2.png" alt="Monster Logo" style="height:40px;"></div>
+    <div class="logo"><img src="https://www.monsterpe.co.za/wp-content/uploads/2016/04/Monster-Logo2.png" alt="Monster Logo"></div>
     <nav>
       <ul>
         <li><a href="#services">Services</a></li>
@@ -128,8 +134,7 @@
   <!-- About Section -->
   <section id="about" class="about">
     <h2>About Us</h2>
-    <img src="https://www.monsterpe.co.za/wp-content/uploads/2016/04/Lloyd-Wild-Managing-Director-200x300.jpg" alt="Team Photo" class="about-img">
-    <p>With over 25 years of experience, Monster Productions & Events delivers innovative event solutions, combining creativity and technology to craft memorable experiences.</p>
+    <p>With over 25 years of experience, Monster Productions & Events delivers innovative event solutions, combining creativity and technology to craft memorable experiences. Our team of professionals has managed events of every scale, always exceeding client expectations.</p>
   </section>
 
   <!-- Testimonials -->
