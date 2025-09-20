@@ -1,198 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Monster Productions & Events</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background: #fff; }
-    h1, h2, h3 { margin-bottom: 0.5em; font-weight: 700; }
-    section { padding: 80px 20px; text-align: center; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Navbar */
-    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background: #111; color: #fff; position: sticky; top: 0; z-index: 1000; }
-    .navbar img { height: 50px; }
-    .navbar nav { display: flex; align-items: center; }
-    .navbar ul { display: flex; list-style: none; gap: 25px; }
-    .navbar a { color: #fff; font-weight: 500; transition: color 0.3s; }
-    .navbar a:hover { color: #ff4c29; }
-    .cta-btn { background: #ff4c29; color: #fff; padding: 12px 25px; border-radius: 25px; transition: background 0.3s; font-weight: bold; }
-    .cta-btn:hover { background: #e63e20; }
-
-    /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 2px; transition: all 0.3s; }
-
-    .mobile-menu { display: none; flex-direction: column; background: #111; position: absolute; top: 70px; left: 0; width: 100%; padding: 20px; gap: 15px; }
-    .mobile-menu a { color: #fff; font-size: 1.1em; }
-
-    /* Hero */
-    .hero { position: relative; background: url('https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture5.png') center/cover no-repeat; color: #fff; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
-    .hero::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
-    .hero-content h1 { font-size: 3em; margin-bottom: 20px; }
-    .hero-content p { margin-bottom: 30px; font-size: 1.2em; }
-
-    /* Services */
-    .services h2 { margin-bottom: 40px; }
-    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-    .service-card { background: #f9f9f9; padding: 30px 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform 0.3s; }
-    .service-card:hover { transform: translateY(-8px); }
-
-    /* Portfolio */
-    .portfolio h2 { margin-bottom: 40px; }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .portfolio-grid img { width: 100%; border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; transition: transform 0.3s; }
-    .portfolio-grid img:hover { transform: scale(1.05); }
-
-    /* About */
-    .about p { max-width: 700px; margin: auto; font-size: 1.1em; }
-
-    /* Testimonials */
-    .testimonials h2 { margin-bottom: 40px; }
-    .testimonial-slider { max-width: 700px; margin: auto; position: relative; }
-    blockquote { display: none; font-style: italic; font-size: 1.1em; line-height: 1.5; }
-    blockquote.active { display: block; }
-
-    /* Contact */
-    .contact h2 { margin-bottom: 30px; }
-    form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; }
-    input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; }
-    button { cursor: pointer; border: none; }
-
-    /* Footer */
-    .footer { background: #111; color: #fff; padding: 25px; text-align: center; font-size: 0.9em; }
-
-    @media (max-width: 768px) {
-      .navbar ul, .cta-btn { display: none; }
-      .hamburger { display: flex; }
-      .hero-content h1 { font-size: 2em; }
-    }
-  </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Testimonials
-      const testimonials = document.querySelectorAll(".testimonial-slider blockquote");
-      let index = 0;
-      function showTestimonial(i) {
-        testimonials.forEach((t, idx) => t.classList.toggle("active", idx === i));
-      }
-      showTestimonial(index);
-      setInterval(() => {
-        index = (index + 1) % testimonials.length;
-        showTestimonial(index);
-      }, 4000);
-
-      // Mobile menu
-      const hamburger = document.querySelector(".hamburger");
-      const mobileMenu = document.querySelector(".mobile-menu");
-      hamburger.addEventListener("click", () => {
-        mobileMenu.style.display = mobileMenu.style.display === "flex" ? "none" : "flex";
-        hamburger.classList.toggle("active");
-      });
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Productions & Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #ff3a00;
+            --secondary: #2c3e50;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e03200;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 58, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to right, #2c3e50, #4a6580);
+            color: white;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary);
+        }
+        
+        .testimonial q {
+            font-style: italic;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: #f8f9fa;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <header class="navbar">
-    <div class="logo"><img src="https://www.monsterpe.co.za/wp-content/uploads/2016/04/Monster-Logo2.png" alt="Monster Logo"></div>
-    <nav>
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="#contact" class="cta-btn">Get a Quote</a>
-    <div class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Monster<span>Productions</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hero">
+                <h1>Creating Unforgettable Event Experiences</h1>
+                <p>Monster Productions & Events delivers exceptional event production services that captivate audiences and create lasting memories.</p>
+                <div>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                    <a href="#services" class="btn" style="background: transparent; border: 2px solid white;">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu">
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
-  </div>
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Event Production">
+                    </div>
+                    <div class="service-content">
+                        <h3>Event Production</h3>
+                        <p>Full-scale event production services from concept to execution, ensuring seamless and memorable experiences.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1579033382047-9f6c7dc556714?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audio Visual Solutions">
+                    </div>
+                    <div class="service-content">
+                        <h3>Audio Visual Solutions</h3>
+                        <p>State-of-the-art audio and visual equipment with expert technicians to enhance your event experience.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stage Design">
+                    </div>
+                    <div class="service-content">
+                        <h3>Stage Design</h3>
+                        <p>Creative and innovative stage designs that transform your event space and captivate your audience.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; margin-top: 15px;">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Bringing Your Vision to Life</h1>
-      <p>Professional event production, audio-visual, and staging solutions.</p>
-      <a href="#services" class="cta-btn">Explore Services</a>
-    </div>
-  </section>
+    <!-- Portfolio Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our <span>Portfolio</span></h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate Event">
+                    <div class="portfolio-overlay">
+                        <h3>Corporate Event</h3>
+                        <p>Annual Conference</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Music Festival">
+                    <div class="portfolio-overlay">
+                        <h3>Music Festival</h3>
+                        <p>Summer Sounds 2023</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Product Launch">
+                    <div class="portfolio-overlay">
+                        <h3>Product Launch</h3>
+                        <p>Tech Innovation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <h3>Event Solutions</h3>
-        <p>Complete planning and management for unforgettable experiences.</p>
-      </div>
-      <div class="service-card">
-        <h3>Audio & Visual</h3>
-        <p>High-quality sound, lighting, and visual effects to set the stage.</p>
-      </div>
-      <div class="service-card">
-        <h3>Equipment Hire</h3>
-        <p>Reliable staging, rigging, and AV equipment for any event size.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Client <span>Testimonials</span></h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client">
+                    <q>Monster Productions transformed our annual conference into an unforgettable experience. Their attention to detail and professional approach exceeded our expectations.</q>
+                    <h4>Sarah Johnson</h4>
+                    <p>Marketing Director, TechCorp</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio">
-    <h2>Event Showcase</h2>
-    <div class="portfolio-grid">
-      <img src="https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture1.png" alt="Event 1">
-      <img src="https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture2.png" alt="Event 2">
-      <img src="https://www.monsterpe.co.za/wp-content/uploads/2022/01/Picture3.png" alt="Event 3">
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get in <span>Touch</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>123 Event Street, Johannesburg, South Africa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+27 11 123 4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@monsterpe.co.za</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Your Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Your Email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="How can we help you?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>With over 25 years of experience, Monster Productions & Events delivers innovative event solutions, combining creativity and technology to craft memorable experiences. Our team of professionals has managed events of every scale, always exceeding client expectations.</p>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Monster<span>Productions</span></div>
+                    <p>Creating exceptional events that leave a lasting impression. Professional event production services across South Africa.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Event Production</a></li>
+                        <li><a href="#">Audio Visual</a></li>
+                        <li><a href="#">Stage Design</a></li>
+                        <li><a href="#">Lighting</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Monster Productions & Events. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="testimonials">
-    <h2>What Our Clients Say</h2>
-    <div class="testimonial-slider">
-      <blockquote>“MonsterPE made our corporate event seamless and unforgettable!” – Client A</blockquote>
-      <blockquote>“Top-notch equipment and an amazing team to work with.” – Client B</blockquote>
-      <blockquote>“Professional, reliable, and creative. Highly recommended.” – Client C</blockquote>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Tell us about your event..." required></textarea>
-      <button type="submit" class="cta-btn">Send Message</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Monster Productions & Events. All rights reserved.</p>
-  </footer>
+    <script>
+        // Simple testimonial slider
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonials = [
+                {
+                    text: "Monster Productions transformed our annual conference into an unforgettable experience. Their attention to detail and professional approach exceeded our expectations.",
+                    name: "Sarah Johnson",
+                    position: "Marketing Director, TechCorp",
+                    image: "https://randomuser.me/api/portraits/women/65.jpg"
+                },
+                {
+                    text: "The team at Monster Productions delivered an incredible product launch event. Their creativity and technical expertise were impressive from start to finish.",
+                    name: "David Wilson",
+                    position: "CEO, Innovate Inc",
+                    image: "https://randomuser.me/api/portraits/men/32.jpg"
+                },
+                {
+                    text: "We've partnered with Monster Productions for three years running for our music festival. They consistently deliver exceptional production quality.",
+                    name: "Lisa Brown",
+                    position: "Event Manager, Summer Sounds",
+                    image: "https://randomuser.me/api/portraits/women/44.jpg"
+                }
+            ];
+            
+            let currentTestimonial = 0;
+            const testimonialElement = document.querySelector('.testimonial');
+            
+            function showTestimonial(index) {
+                const testimonial = testimonials[index];
+                testimonialElement.innerHTML = `
+                    <img src="${testimonial.image}" alt="Client">
+                    <q>${testimonial.text}</q>
+                    <h4>${testimonial.name}</h4>
+                    <p>${testimonial.position}</p>
+                `;
+            }
+            
+            // Auto-rotate testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+            
+            // Form submission handling
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        });
+    </script>
 </body>
 </html>
